@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reign Ivann Bigol Portfolio</title>
+    <!-- External CSS for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* General Styling */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        :root {
+            --primary-color: #3498db; /* Blue */
+            --secondary-color: #2c3e50; /* Dark Blue/Gray */
+            --accent-color: #e74c3c; /* Red/Orange for highlights */
+            --background-start: #f4f7f9; /* Light Blue-Gray for gradient */
+            --background-end: #ecf0f1; /* Lighter Gray for gradient */
+            --text-color: #333;
+            --card-background: #ffffff;
+            --font-family: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-color);
+            /* Subtle Gradient Background */
+            background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Typography */
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 25px;
+            margin: 5px;
+            border: none;
+            border-radius: 8px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn.secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn.secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        .nav-logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            padding: 8px 0;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transition: all 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .profile-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 30px;
+            border: 6px solid var(--primary-color);
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Setting the uploaded image as the background for the circle */
+        .profile-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Placeholder: replace with actual image reference if needed */
+            /* Since we are in a single HTML file, we will use a fallback icon */
+            display: none; /* Hide the HTML img tag */
+        }
+        
+        /* Visual background for the profile circle using the uploaded image */
+        .profile-circle {
+            background-image: url('image_478b01.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
+        .typing-text {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            color: #666;
+            font-weight: 300;
+        }
+
+        .social-hero {
+            margin-top: 30px;
+        }
+
+        .social-hero a {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            margin: 0 15px;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .social-hero a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Sections (General) */
+        section {
+            padding: 100px 0;
+            text-align: center; /* Center content within sections */
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--card-background);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            max-width: 900px;
+            margin: 0 auto; /* Centering the content */
+            text-align: left; /* Align text inside cards to the left */
+        }
+
+        .info-card, .summary-card {
+            flex: 1;
+            background-color: var(--background-end);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .info-card:hover, .summary-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3, .summary-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Stack on small screens, keep 1 column for clean look */
+            gap: 15px;
+        }
+
+        .info-item {
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .info-item i {
+            color: var(--primary-color);
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .summary-card p {
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills {
+            background-color: var(--background-start);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto; /* Centering the grid */
+            text-align: left;
+        }
+
+        .skill-category {
+            background-color: var(--card-background);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            font-size: 1.4em;
+        }
+
+        .skill-bar {
+            background-color: #eee;
+            color: var(--text-color);
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .tech-logos {
+            background-color: transparent;
+            padding: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .tech-logos img {
+            width: 32px; 
+            height: 32px; 
+            margin-right: 20px; 
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+            filter: grayscale(10%); /* Subtle effect on icons */
+        }
+
+        .tech-logos img:hover {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+
+        /* Experience Section */
+        .experience {
+            background-color: var(--card-background);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+            text-align: left;
+        }
+
+        /* Timeline vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+
+        /* Item positioning on the left/right of the line */
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--primary-color);
+            border: 3px solid white;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -10px;
+            right: auto;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--background-start);
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.3s;
+        }
+        
+        .timeline-content:hover {
+            background-color: #eef1f3;
+        }
+
+        .timeline-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .timeline-content .company {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .job-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .job-details li {
+            padding-left: 1.3em;
+            position: relative;
+            margin-bottom: 5px;
+        }
+
+        .job-details li::before {
+            content: '✓';
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--background-end);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 900px;
+            margin: 0 auto; /* Centering the content */
+            text-align: left;
+        }
+
+        .contact-info {
+            flex: 1;
+            max-width: 350px;
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-item {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .contact-item i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.3em;
+        }
+
+        .contact-form {
+            flex: 2;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form .btn {
+            align-self: flex-start;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.4em;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 900px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-card, .summary-card, .contact-info, .contact-form {
+                width: 100%;
+                max-width: 90%;
+                margin-bottom: 20px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 10px;
+                margin-bottom: 30px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-marker {
+                left: 10px !important;
+                right: auto;
+                top: 25px;
+            }
+            
+            .contact-form .btn {
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-background);
+                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+                padding: 10px 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 10px 20px;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .typing-text {
+                font-size: 2.2em;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1em;
+            }
+
+            .footer .container {
+                flex-direction: column;
+            }
+
+            .footer .social-links {
+                margin-top: 15px;
+            }
+
+            .footer .social-links a {
+                margin: 0 10px;
+            }
+        }
+
+        /* Hamburger transition for open/close */
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">R.B. Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-circle">
+                <!-- Image is handled by CSS background-image property -->
+                <img src="image_478b01.png" alt="Profile" id="profilePic">
+            </div>
+            <h1 class="typing-text">Hi, I'm <span class="highlight">Reign Ivann Bigol</span></h1>
+            <p class="hero-subtitle">Customer Service Professional & Working Student</p>
+            <div class="hero-buttons">
+                <button class="btn primary">View Details</button>
+                <button class="btn secondary">Download CV</button>
+            </div>
+            <div class="social-hero">
+                <a href="https://www.facebook.com/share/19hqPhwbai/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/_whoisrainn?igsh=MTc2MmhiamkxMWRhcw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="info-card">
+                    <h3>Personal Information</h3>
+                    <div class="info-grid">
+                        <div class="info-item"><i class="fas fa-user"></i> Name: Reign Ivann Bigol</div>
+                        <div class="info-item"><i class="fas fa-birthday-cake"></i> Age: 25 years old</div>
+                        <div class="info-item"><i class="fas fa-flag"></i> Nationality: Filipino</div>
+                        <div class="info-item"><i class="fas fa-cross"></i> Religion: Roman Catholic</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <h3>Professional Summary</h3>
+                    <p>A highly driven working student successfully leveraging 3+ years of intensive customer service experience—where analytical problem-solving and clear communication were paramount—to pivot toward a career in Software Engineering. I am actively developing a foundational tech stack (HTML, CSS, JS, Python) while pursuing my studies, demonstrating strict time management and the ability to rapidly master complex systems. My professional background provides a unique advantage in understanding user needs and applying technical solutions with a focus on user satisfaction and efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Customer Service</h3>
+                    <div class="skill-bar">Customer Relations Management</div>
+                    <div class="skill-bar">Efficient Problem Solving</div>
+                    <div class="skill-bar">Call & Email Handling</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Communication</h3>
+                    <div class="skill-bar">English (Fluent)</div>
+                    <div class="skill-bar">Filipino (Native)</div>
+                    <div class="skill-bar">Active Listening</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Personal Skills</h3>
+                    <div class="skill-bar">Strict Time Management</div>
+                    <div class="skill-bar">Multitasking Capability</div>
+                    <div class="skill-bar">Analytical Thinking</div>
+                    <div class="skill-bar">Adaptive & Flexible</div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tech Stack (Tools)</h3>
+                    <div class="skill-bar tech-logos">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Customer Service Representative</h3>
+                        <p class="company">Amazon | September 2022 - Present</p>
+                        <div class="job-details">
+                            <ul>
+                                <li>Successfully resolved customer complaints and inquiries via multiple channels.</li>
+                                <li>Provided accurate and complete product/service information to improve customer knowledge.</li>
+                                <li>Collaborated with team members and supervisors to implement process improvements, enhancing overall service quality.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item"><i class="fas fa-envelope"></i> your.email@example.com</div>
+                    <div class="contact-item"><i class="fas fa-phone"></i> +63 XXX XXX XXXX</div>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Philippines</div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Reign Ivann Bigol. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/19hqPhwbai/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/_whoisrainn?igsh=MTc2MmhiamkxMWRhcw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Navbar Toggle for Mobile
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        hamburger.classList.remove('open');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // 2. Typing Effect for Hero Title
+            const typingTextElement = document.querySelector('.typing-text');
+            const nameSpan = document.querySelector('.typing-text .highlight');
+            const initialText = `Hi, I'm `;
+            const nameText = nameSpan.textContent;
+            const fullText = initialText + nameText;
+            const speed = 75; // Typing speed in milliseconds
+            let i = 0;
+
+            function typeWriter() {
+                if (i < fullText.length) {
+                    if (i < initialText.length) {
+                        // Typing "Hi, I'm "
+                        typingTextElement.innerHTML = fullText.substring(0, i + 1);
+                    } else {
+                        // Typing "Reign Ivann Bigol" with the highlight
+                        const namePart = fullText.substring(initialText.length, i + 1);
+                        typingTextElement.innerHTML = initialText + `<span class="highlight">${namePart}</span>`;
+                    }
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+
+            // Clear and start the typing effect on load
+            typingTextElement.innerHTML = '';
+            setTimeout(typeWriter, 500);
+
+
+            // 3. Simple Scrollspy for Active Nav Link
+            const sections = document.querySelectorAll('section[id]');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+
+                sections.forEach(section => {
+                    // Offset to trigger activation before section hits the very top
+                    const sectionTop = section.offsetTop - 150; 
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // 4. Contact Form Submission (Placeholder)
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Custom modal for message box instead of alert()
+                const formMessage = document.createElement('div');
+                formMessage.style.cssText = `
+                    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                    background: #2ecc71; color: white; padding: 20px; border-radius: 8px; 
+                    z-index: 2000; box-shadow: 0 5px 15px rgba(0,0,0,0.3); font-weight: bold;
+                `;
+                formMessage.textContent = "Thank you for your message! This form is for visual demonstration only.";
+                document.body.appendChild(formMessage);
+
+                setTimeout(() => {
+                    formMessage.remove();
+                }, 3000);
+
+                contactForm.reset();
+            });
+            
+            // 5. Scroll to top when clicking View Details (btn primary)
+            document.querySelector('.hero-buttons .primary').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+        });
+    </script>
+</body>
+</html>
